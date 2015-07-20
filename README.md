@@ -6,7 +6,7 @@ i2c devices with the same address on a single I2C bus.
 
 ### Pros
 With an additional piece of hardware (the
-[74AC11138](http://www.ti.com/lit/ds/symlink/74ac11138.pdf) and only three
+[74AC11138](http://www.ti.com/lit/ds/symlink/74ac11138.pdf)) and only three
 additional GPIO pins, this hack enables a microcontroller to communicate with
 up to eight additional i2c slaves with identical device addresses.
 

@@ -3,7 +3,9 @@
 
 namespace BMA180
 {
-  static const uint8_t ID = 0x01;
+  static const uint8_t I2C_ADDRESS = 0x40;
+
+  static const uint8_t ID = 0x00;
   static const uint8_t ACCXLSB = 0x02;
   static const uint8_t ACCXMSB = 0x03;
   static const uint8_t ACCYLSB = 0x04;

@@ -17,8 +17,11 @@ const uint8_t NUM_BMA180S = NUM_CHANNELS;
 
 /// Function Prototypes
 void selectDevice(uint8_t demultiplexer_channel);
-void initBMA180();
+bool initBMA180();
 int16_t getAccelZ();
+void i2c_read(uint8_t device_address, uint8_t starting_mem_address,
+              uint8_t num_bytes, uint8_t* data);
+
 
 void setup()
 {
@@ -28,7 +31,14 @@ void setup()
   for (uint8_t bma180_index = 0; bma180_index < NUM_BMA180S; ++bma180_index)
   {
     selectDevice(bma180_index);
-    initBMA180();
+    if (!initBMA180())
+    {
+      Serial.print("Error: BMA180 ");
+      Serial.print(bma180_index);
+      Serial.println(" not responding!");
+      /// Do nothing.
+      while(1);
+    }
   }
 }
 
@@ -57,7 +67,39 @@ void selectDevice(uint8_t demultiplexer_channel)
   digitalWrite(Pinouts::BINARY_SELECT_2, demultiplexer_channel & 0x04);
 }
 
+bool initBMA180()
+{
+  uint8_t retreived_id;
+  i2c_read(BMA180::I2C_ADDRESS, BMA180::ID, 1, &retreived_id);
+  if (retreived_id != 3)
+    return false;
+  return true;
+}
+
 int16_t getAccelZ()
 {
-  return 0;
+  uint8_t num_bytes = 2;
+  uint8_t z_data[num_bytes];
+  int16_t z_measurement;
+
+  i2c_read(BMA180::I2C_ADDRESS, BMA180::ACCZLSB, num_bytes, z_data);
+
+  z_measurement = (int16_t)z_data[0] + (((int16_t)z_data[1]) << 8);
+  return z_measurement;
+}
+
+void i2c_read(uint8_t device_address, uint8_t starting_mem_address,
+              uint8_t num_bytes, uint8_t* data)
+{
+/// Format is <START> <WRITE> <DEVICE_ADDRESS> <MEM_ADDRESS> <STOP>;
+///           <REP START> <DATA_0> ... <DATA_N> <STOP>;
+  Wire.beginTransmission(device_address);
+  Wire.write(starting_mem_address);
+  Wire.endTransmission();
+
+  Wire.requestFrom(device_address, num_bytes);
+  for (uint8_t byte_index = 0; byte_index < num_bytes; ++byte_index)
+  {
+    data[byte_index] = Wire.read();
+  }
 }

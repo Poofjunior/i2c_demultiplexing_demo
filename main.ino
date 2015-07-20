@@ -26,6 +26,7 @@ void i2c_read(uint8_t device_address, uint8_t starting_mem_address,
 void setup()
 {
   Serial.begin(115200); /// baud rate is irrelevant for Teensy USB Serial.
+  delay(1000);
 
   Wire.begin();
   for (uint8_t bma180_index = 0; bma180_index < NUM_BMA180S; ++bma180_index)
@@ -84,7 +85,9 @@ int16_t getAccelZ()
 
   i2c_read(BMA180::I2C_ADDRESS, BMA180::ACCZLSB, num_bytes, z_data);
 
+  /// Unpack signed z data from consecutive registers.
   z_measurement = (int16_t)z_data[0] + (((int16_t)z_data[1]) << 8);
+  z_measurement >>= 2;
   return z_measurement;
 }
 

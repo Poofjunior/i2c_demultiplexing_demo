@@ -1,7 +1,7 @@
 # Arduino Make file. Refer to https://github.com/sudar/Arduino-Makefile
 
 # WARNING: Trailing whitespace will cause options to be read incorrectly.
-BOARD_TAG    = teensy31
+BOARD_TAG    = teensy3
 
 # Additional user-defined libraries may be added to this list
 ARDUINO_LIBS += Wire

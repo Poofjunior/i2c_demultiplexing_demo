@@ -17,6 +17,27 @@ pins, we sacrifice this bidirectionality on the SCL line. Luckily, I2C slaves
 only tug on the SCL line if they implement "clock-stretching," a somewhat
 uncommon feature among I2C slave devices.
 
+## Pinouts
+### 74AC11138 Pinouts
+| Pin  | Type   | Connected to...        |
+|------|--------|------------------------|
+| VCC  | INPUT  | Teensy 3.3V            |
+| GND  | INPUT  | GND                    |
+| A    | INPUT  | Teensy BINARY_SELECT_0 |
+| B    | INPUT  | Teensy BINARY_SELECT_1 |
+| C    | INPUT  | Teensy BINARY_SELECT_2 |
+| G1   | INPUT  | VCC                    |
+| ~G2A | INPUT  | GND                    |
+| ~G2B | INPUT  | Teensy SCL             |
+| Y0   | OUTPUT | BMA180 0 SCL           |
+| Y1   | OUTPUT | BMA180 1 SCL           |
+| Y2   | INPUT  | BMA180 2 SCL           |
+
+### BMA180 (0, 1, 2) Pinouts
+
+
+### Teensy 3.x Pinouts
+
 ## Compiling this Code
 
 ## Running this Code

@@ -21,8 +21,8 @@ uncommon feature among I2C slave devices.
 ### 74AC11138 Pinouts
 | Pin  | Type   | Connected to...        |
 |------|--------|------------------------|
-| VCC  | INPUT  | Teensy 3.3V            |
-| GND  | INPUT  | GND                    |
+| VCC  | PWR    | Teensy 3.3V            |
+| GND  | GND    | GND                    |
 | A    | INPUT  | Teensy BINARY_SELECT_0 |
 | B    | INPUT  | Teensy BINARY_SELECT_1 |
 | C    | INPUT  | Teensy BINARY_SELECT_2 |
@@ -37,6 +37,16 @@ uncommon feature among I2C slave devices.
 
 
 ### Teensy 3.x Pinouts
+Note: Names are used here. Pinout numbering is located in **pinouts.hpp**.
+| Pin            | Type   | Connected to...            |
+|----------------|--------|----------------------------|
+| 3.3V           | PWR    | BMA180s and 74AC11138  VCCs|
+| GND            | GND    | BMA180s and 74AC11138  GND |
+|BINARY_SELECT_0 | OUTPUT | 74AC11138 pin A            |
+|BINARY_SELECT_1 | OUTPUT | 74AC11138 pin B            |
+|BINARY_SELECT_2 | OUTPUT | 74AC11138 pin C            |
+|SDA             | OUTPUT | BMA180 SCLs                |
+|SCL             | IN-OUT | 74AC11138 pin ~G2B |
 
 ## Compiling this Code
 

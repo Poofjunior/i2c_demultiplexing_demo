@@ -59,7 +59,9 @@ void loop()
   {
     selectDevice(bma180_index);
     raw_accel_z = getAccelZ();
-    Serial.println("BMA180 device ");
+    Serial.print("BMA180 number ");
+    Serial.print(bma180_index);
+    Serial.print(" | ");
     Serial.print("raw accel_z: ");
     Serial.println(raw_accel_z);
   }

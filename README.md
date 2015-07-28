@@ -46,8 +46,12 @@ Note: Names are used here. Pinout numbering is located in **pinouts.hpp**.
 |BINARY_SELECT_1 | OUTPUT | 74AC11138 pin B            |
 |BINARY_SELECT_2 | OUTPUT | 74AC11138 pin C            |
 |SDA             | OUTPUT | BMA180 SCLs                |
-|SCL             | IN-OUT | 74AC11138 pin ~G2B |
+|SCL             | IN-OUT | 74AC11138 pin ~G2B         |
 
 ## Compiling this Code
 
+This code can be compiled under The [Arduino Makefile](https://github.com/sudar/Arduino-Makefile)
+
 ## Running this Code
+After uploading, view the Serial port window for incoming data from the z-axis
+of each sensor.

@@ -24,10 +24,6 @@ i2c devices with the same address on a single host I2C bus.
 | SD2    | IN-OUT | BMA180 2 SDA         |
 | SC2    | IN-OUT | BMA180 2 SCL         |
 
-### BMA180 (0, 1, 2) Pinouts
-
-Note: Pinout names are used below. Pinout numbering is located in
- **pinouts.hpp**.
 ### Teensy 3.x Pinouts
 | Pin             | Type   | Connected to...             |
 |-----------------|--------|-----------------------------|

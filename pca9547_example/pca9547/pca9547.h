@@ -47,7 +47,7 @@ public:
 static const uint8_t BASE_I2C_ADDRESS = 0x70;
 static const uint8_t NUM_POSSIBLE_ADDRESSES = 8;
 
-static const uint8_t MIN_INVALID_BUS_ADDRESS = 8;
+static const uint8_t ENABLE_MASK = 0x08;
 
 private:
   uint8_t i2c_address_;

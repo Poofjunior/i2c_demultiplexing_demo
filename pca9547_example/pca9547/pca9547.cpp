@@ -10,7 +10,7 @@ PCA9547::PCA9547() :
 
 PCA9547::PCA9547(uint8_t default_address) :
   i2c_address_(default_address),
-  bus_channel_(MIN_INVALID_BUS_ADDRESS)
+  bus_channel_(0) /// default channel upon powerup is 0.
 {
 /// Set a valid channel if the input was out of range.
   if (default_address < BASE_I2C_ADDRESS)
@@ -42,6 +42,9 @@ void PCA9547::setBusChannel(uint8_t channel)
     return;
 
   Wire.beginTransmission(i2c_address_);
-  Wire.write(channel);
+  Wire.write(channel | ENABLE_MASK);
   Wire.endTransmission();
+
+
+  bus_channel_ = channel;
 }

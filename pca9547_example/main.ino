@@ -35,6 +35,7 @@ void setup()
   for (uint8_t bma180_index = 0; bma180_index < NUM_BMA180S; ++bma180_index)
   {
     i2c_bus_splitter.setBusChannel(bma180_index);
+    delay(1);
     Serial.print("Initializing device ");
     Serial.println(bma180_index);
     if (!initBMA180())
